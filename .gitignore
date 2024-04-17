@@ -2,7 +2,7 @@
 node_modules/
 
 # Arquivos temporários
-temp/
+temp*
 
 # Banco de Dados
 data_base/accounts/

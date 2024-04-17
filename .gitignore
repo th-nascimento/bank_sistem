@@ -1,8 +1,8 @@
 # Diretório de dependências
 node_modules/
 
-# Arquivos temporários
-temp*
-
 # Banco de Dados
 data_base/accounts/
+
+# Arquivos temporários
+temp*

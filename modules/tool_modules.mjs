@@ -150,6 +150,86 @@ const tool = {
       });
   },
 
+  validationLogin: (infoPrompt) => {
+    return new Promise((resolve, reject) => {
+      fs.mkdirSync("./temp_userLogged", { recursive: true }, (error) => {
+        if (error) {
+          tool.errorTreatment("validationLogin.fs.mkdir", error);
+        }
+      });
+
+      fs.writeFileSync(
+        `./temp_userLogged/currentUserLogged.json`,
+        `{"userName":"${infoPrompt.userName}","password":"${infoPrompt.password}"}`,
+        (error) => {
+          if (error) {
+            tool.errorTreatment("validationLogin.fs.writeFile", error);
+          }
+        }
+      );
+
+      async function comparison() {
+        let resultComparison = {
+          userName: false,
+          password: false,
+          currentUser: null,
+        };
+
+        let currentUserLoggedData = await JSON.parse(
+          fs.readFileSync(
+            `./temp_userLogged/currentUserLogged.json`,
+            "utf-8",
+            (error, data) => {
+              if (error) {
+                tool.errorTreatment("validationLogin.fs.readFileSync", error);
+              }
+
+              return data;
+            }
+          )
+        );
+
+        let userInDBData = await tool
+          .fetchFile("./data_base/accounts/", `${infoPrompt.userName}.json`)
+          .then((infoFile) => {
+            if (!infoFile) {
+              return { userName: null, password: null };
+            }
+
+            let dataFile = "";
+
+            return (dataFile = JSON.parse(
+              fs.readFileSync(infoFile.path, "utf-8", (error, data) => {
+                if (error) {
+                  tool.errorTreatment(
+                    "validationLogin/userInDBData.fs.readFileSync",
+                    error
+                  );
+                }
+
+                return data;
+              })
+            ));
+          });
+
+        if (currentUserLoggedData.userName === userInDBData.userName) {
+          resultComparison.userName = true;
+          resultComparison.currentUser = currentUserLoggedData.userName;
+        }
+
+        if (currentUserLoggedData.password === userInDBData.password) {
+          resultComparison.password = true;
+        }
+
+        return resultComparison;
+      }
+
+      resolve(comparison());
+
+      reject();
+    });
+  },
+
   /**
    * Updates the amount in a savings account within a user's account file based on a condition.
    *

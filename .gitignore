@@ -5,4 +5,5 @@ node_modules/
 data_base/accounts/
 
 # Arquivos temporários
+temp_userLogged
 temp*

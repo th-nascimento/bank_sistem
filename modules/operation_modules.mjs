@@ -38,7 +38,7 @@ const operation = {
       ])
       .then((answer) => {
         return {
-          userId: tool.generateId(),
+          userId: tool.generateIdHex(),
           userName: answer.userName,
           password: answer.password,
           fullName: answer.fullName,

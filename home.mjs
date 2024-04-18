@@ -14,9 +14,9 @@ import fs from "fs";
 import chalk from "chalk";
 
 // Own Modules
-import tool from "./tool_modules.mjs";
-import oper from "./operation_modules.mjs";
-import access from "./access_modules.mjs";
+import tool from "./modules/tool_modules.mjs";
+import oper from "./modules/operation_modules.mjs";
+import access from "./modules/access_modules.mjs";
 
 console.log("Seja Bem-vindo!");
 

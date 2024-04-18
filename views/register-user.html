@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank System</title>
+  </head>
+  <body>
+    <h1>Registre um Novo Usuário</h1>
+    <form action="/users/registerUser" method="post">
+      <fieldset>
+        <legend>Cadastro de Usuário</legend>
+        <div>
+          <label for="userName"
+            >Nome de usuário: <input type="text" name="userName"
+          /></label>
+        </div>
+        <div>
+          <label for="password"
+            >Crie uma senha: <input type="text" name="password"
+          /></label>
+        </div>
+        <div>
+          <label for="fullName"
+            >Nome completo: <input type="text" name="fullName"
+          /></label>
+        </div>
+        <div>
+          <label for="birthDate"
+            >Data de nascimento: <input type="text" name="birthDate"
+          /></label>
+        </div>
+      </fieldset>
+      <button type="submit">CADASTRAR</button>
+    </form>
+    <button type="button" id="getButton">Ver dbSystem no Console</button>
+    <h3><a href="/">Clique aqui</a> para voltar a Página Inicial</h3>
+  </body>
+  <script src="./scripts/script.js"></script>
+</html>

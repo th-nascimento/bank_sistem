@@ -269,13 +269,19 @@ const tool = {
    * const id = generateId();
    * console.log(id); // Output: Example: 34-12-78-90-56 (format may vary)
    */
-  generateId: () => {
+  generateIdNum: () => {
     let num1 = Math.round(Math.random() * 100);
     let num2 = Math.round(Math.random() * 100);
     let num3 = Math.round(Math.random() * 100);
     let num4 = Math.round(Math.random() * 100);
     let num5 = Math.round(Math.random() * 100);
     return `${num1}${num2}${num3}-${num4}${num5}`;
+  },
+
+  generateIdHex: () => {
+    let firstBase = Math.random().toString(36).substring(2, 9);
+    let secondBase = Math.random().toString(36).substring(2, 9);
+    return `${firstBase}-${secondBase}`;
   },
 };
 

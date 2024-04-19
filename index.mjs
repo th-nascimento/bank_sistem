@@ -18,12 +18,18 @@ app.use(
   })
 );
 
-app.use(express.json());
+app.use(express.static(basePath));
+app.use(
+  "/users/scripts",
+  express.static("D:/Programação/bank_sistem/views/scripts")
+);
+
+//app.use(express.json());
 
 app.use("/users", users);
 
 app.get("/", (req, res) => {
-  res.sendFile(`${basePath}/index.html`);
+  res.sendFile(`${basePath}/index.mjs`);
 });
 
 app.listen(PORT, () => {

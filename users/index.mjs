@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 
 // Own Modules
 import tool from "../modules/tool_modules.mjs";
-import db from "../data_base/db-system.mjs";
+import dbUsers from "../data_base/db-system.mjs";
 
 const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
@@ -42,15 +42,14 @@ router.post("/user-loggedin", (req, res) => {
   res.json(req.body);
 }); */
 
+// ------------> REQ DE REGISTRO
 router.get("/registerUser", (req, res) => {
-  const data = db.get();
-  console.log(data);
   res.sendFile(`${basePath}/register-user.html`);
 });
 
 router.post("/registerUser", (req, res) => {
   console.log(req.body);
-  db.register(
+  dbUsers.register(
     req.body.userName,
     req.body.password,
     req.body.fullName,
@@ -58,6 +57,22 @@ router.post("/registerUser", (req, res) => {
   );
 
   res.sendFile(`${basePath}/register-user.html`);
+});
+
+// ------------> REQ DE CONSULTAS
+router.get("/get-all", (req, res) => {
+  res.send(dbUsers.get());
+});
+
+// ------------> REQ DE EXCLUSÃO
+router.get("/deleteUser", (req, res) => {
+  res.sendFile(`${basePath}/user-area.html`);
+});
+
+router.post("/deleteUser", (req, res) => {
+  console.log(req.body);
+
+  res.sendFile(`${basePath}/user-area.html`);
 });
 
 export default router;

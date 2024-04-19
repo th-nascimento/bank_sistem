@@ -27,8 +27,10 @@ class User {
   }
 }
 
-const dbSystem = {
-  collection: new Array(),
+class Database {
+  constructor() {
+    this.collection = [];
+  }
 
   verifyCollec() {
     if (this.collection.length <= 0) {
@@ -36,19 +38,35 @@ const dbSystem = {
     } else {
       return true;
     }
-  },
+  }
 
   register(userName, password, fullName, birthDate) {
     this.collection.push(new User(userName, password, fullName, birthDate));
-  },
+  }
 
-  update: () => {},
+  update() {}
 
   get() {
     return this.collection;
-  },
+  }
 
-  del: () => {},
-};
+  del(id = null, uName = null, name = null) {
+    let deleteUser = "";
+    if (id !== null) {
+      deleteUser = this.collection.findIndex(obj.userId === id);
+      return deleteUser;
+    } else if (uName !== null) {
+      deleteUser = this.collection.findIndex(obj.userName === uName);
+      return deleteUser;
+    } else if (name !== null) {
+      deleteUser = this.collection.findIndex(obj.fullName === name);
+      return deleteUser;
+    } else {
+      return "User does not exist in database.";
+    }
+  }
+}
 
-export default dbSystem;
+const dbUsers = new Database();
+
+export default dbUsers;

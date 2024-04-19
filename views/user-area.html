@@ -7,9 +7,38 @@
   </head>
   <body>
     <h1>Seja Bem-vindo!</h1>
-    <div>
-      <ul id="userInfo"></ul>
-    </div>
+    <form action="/users/deleteUser" method="POST">
+      <div>
+        <input
+          type="text"
+          id="idPrompt"
+          name="id"
+          placeholder="ID do usuário"
+          value="null"
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          id="uNamePrompt"
+          name="uName"
+          placeholder="Nome de usuário"
+          value="null"
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          id="namePrompt"
+          name="name"
+          placeholder="Nome completo"
+          value="null"
+        />
+      </div>
+    </form>
     <h3><a href="/users/login">Clique aqui</a> para fazer o login</h3>
+    <button type="button" id="getButton">Ver Database no Console</button>
+    <button type="button" id="delButton">Deletar Usuário</button>
   </body>
+  <script src="./scripts/dbcontroll.js"></script>
 </html>

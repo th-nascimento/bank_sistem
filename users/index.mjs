@@ -49,7 +49,7 @@ router.get("/registerUser", (req, res) => {
 
 router.post("/registerUser", (req, res) => {
   console.log(req.body);
-  dbUsers.register(
+  dbUsers.create(
     req.body.userName,
     req.body.password,
     req.body.fullName,
@@ -61,18 +61,22 @@ router.post("/registerUser", (req, res) => {
 
 // ------------> REQ DE CONSULTAS
 router.get("/get-all", (req, res) => {
-  res.send(dbUsers.get());
+  res.send(dbUsers.read());
 });
 
 // ------------> REQ DE EXCLUSÃO
-router.get("/deleteUser", (req, res) => {
+router.get("/delete_in_db", (req, res) => {
   res.sendFile(`${basePath}/user-area.html`);
 });
 
-router.post("/deleteUser", (req, res) => {
-  console.log(req.body);
+router.get("/deleteUser", (req, res) => {
+  let userId = req.query.userId;
+  let userName = req.query.userName;
+  let fullName = req.query.fullName;
 
-  res.sendFile(`${basePath}/user-area.html`);
+  console.log(dbUsers.del(userId, userName, fullName));
+
+  res.send(dbUsers.del(userId, userName, fullName));
 });
 
 export default router;

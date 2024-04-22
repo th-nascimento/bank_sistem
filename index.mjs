@@ -19,9 +19,10 @@ app.use(
 );
 
 app.use(express.static(basePath));
+
 app.use(
   "/users/scripts",
-  express.static("D:/Programação/bank_sistem/views/scripts")
+  express.static("D:/Programação/bank_system/views/scripts")
 );
 
 //app.use(express.json());

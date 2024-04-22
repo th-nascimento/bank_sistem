@@ -7,14 +7,14 @@
   </head>
   <body>
     <h1>Seja Bem-vindo!</h1>
-    <form action="/users/deleteUser" method="POST">
+    <form action="/users/deleteUser?" method="GET">
       <div>
         <input
           type="text"
           id="idPrompt"
           name="id"
           placeholder="ID do usuário"
-          value="null"
+          value=""
         />
       </div>
       <div>
@@ -23,7 +23,7 @@
           id="uNamePrompt"
           name="uName"
           placeholder="Nome de usuário"
-          value="null"
+          value=""
         />
       </div>
       <div>
@@ -32,13 +32,13 @@
           id="namePrompt"
           name="name"
           placeholder="Nome completo"
-          value="null"
+          value=""
         />
       </div>
     </form>
     <h3><a href="/users/login">Clique aqui</a> para fazer o login</h3>
     <button type="button" id="getButton">Ver Database no Console</button>
-    <button type="button" id="delButton">Deletar Usuário</button>
+    <button type="submit" id="delButton">Deletar Usuário</button>
   </body>
-  <script src="./scripts/dbcontroll.js"></script>
+  <script src="./scripts/user_dbcontroll.js"></script>
 </html>

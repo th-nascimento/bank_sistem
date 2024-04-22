@@ -40,29 +40,59 @@ class Database {
     }
   }
 
-  register(userName, password, fullName, birthDate) {
+  create(userName, password, fullName, birthDate) {
     this.collection.push(new User(userName, password, fullName, birthDate));
+  }
+
+  read() {
+    return this.collection;
   }
 
   update() {}
 
-  get() {
+  del(id = "", uName = "", name = "") {
+    let indexUser = undefined;
+    if (id !== "") {
+      indexUser = this.collection.indexOf(this.searchById(id));
+    } else if (uName !== "") {
+      indexUser = this.collection.indexOf(this.searchByUserName(uName));
+    } else if (name !== "") {
+      indexUser = this.collection.indexOf(this.searchByName(name));
+    } else {
+      return "User does not exist in database.";
+    }
+
+    this.collection.splice(indexUser, 1);
     return this.collection;
   }
 
-  del(id = null, uName = null, name = null) {
-    let deleteUser = "";
-    if (id !== null) {
-      deleteUser = this.collection.findIndex(obj.userId === id);
-      return deleteUser;
-    } else if (uName !== null) {
-      deleteUser = this.collection.findIndex(obj.userName === uName);
-      return deleteUser;
-    } else if (name !== null) {
-      deleteUser = this.collection.findIndex(obj.fullName === name);
-      return deleteUser;
-    } else {
-      return "User does not exist in database.";
+  searchById(userId) {
+    for (let i = 0; i < this.collection.length; i++) {
+      if (this.collection[i].userId === userId) {
+        return this.collection[i];
+      } else {
+        return `Does not exist in database an user with that id: ${userId}.`;
+      }
+    }
+  }
+
+  searchByUserName(userName) {
+    for (let i = 0; i < this.collection.length; i++) {
+      if (this.collection[i].userName === userName) {
+        return this.collection[i];
+      } else {
+        return `Does not exist in database an user with that user name: ${userName}.`;
+      }
+    }
+  }
+
+  searchByName(fullName) {
+    for (let i = 0; i < this.collection.length; i++) {
+      if (this.collection[i].fullName === fullName) {
+        return this.collection[i];
+      } else {
+        return `Does not exist in database an user with that name: ${fullName}.`;
+      }
     }
   }
 }
